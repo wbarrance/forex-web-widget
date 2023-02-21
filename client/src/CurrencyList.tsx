@@ -1,19 +1,24 @@
-import { Currency } from './Currencies'
+import { Rates } from './types'
 
 interface CurrencyListProps {
-  currencies: [Currency]
+  rates: Rates
 }
 
-const CurrencyList = ({ currencies}: CurrencyListProps) => (
+const handleRates = (rates: Rates) => {
+  const arr = []
+
+  for (const [key, value] of Object.entries(rates)) {
+    if (key !== "__typename" ) {
+      arr.push({ symbol: key, value })
+    }
+  }
+
+  return arr
+}
+
+const CurrencyList = ({ rates }: CurrencyListProps) => (
   <ul>
-    {currencies?.map((currency) => (
-      <li key={currency.id}>
-        <h3>{currency.base}</h3>
-        <ul>{currency.rates.map((rate) => (
-          <li key={rate.currency}>{rate.currency} {rate.value}</li>
-        ))}</ul>
-      </li>
-    ))}
+    {handleRates(rates).map((rate) => (<li key={rate.symbol}>{rate.symbol} {rate.value}</li>))}
   </ul>
 );
 

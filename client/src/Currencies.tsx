@@ -1,52 +1,52 @@
 import { useQuery, gql } from '@apollo/client';
+import { Currency } from './types'
 import CurrencyList from './CurrencyList'
 
-const GET_CURRENCIES = gql`
-  query GetCurrencies {
-    currencies {
-      id
+const GET_EXCHANGE_RATES = gql`
+  query GetExchangeRates {
+    getExchangeRates {
       success
       timestamp
       base
       date
       rates {
-        currency
-        value
+        GBP
+        EUR
+        JPY
+        CHF
+        CAD
+        AUD
+        CNY
+        ZAR
+        RUB
+        BRL
+        HKD
+        MXN
       }
     }
   }
 `;
 
-type Rate = {
-  currency: string
-  value: number
-}
-
-export type Currency = {
-  id: string
-  success: boolean
-  timestamp: number
-  base: string
-  date: string
-  rates: [Rate]
-}
 
 const Currencies = () => {
-  const { loading, error, data, refetch } = useQuery(GET_CURRENCIES, {
+  const { loading, error, data, refetch } = useQuery(GET_EXCHANGE_RATES, {
     notifyOnNetworkStatusChange: true,
   });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching data</p>;
-  const currencies: [Currency] = data.currencies
-
+  const currency: Currency = data.getExchangeRates
+  console.log("DATA: ", data)
   const handleRefresh = () => refetch()
 
   return (
     <div>
       <button onClick={handleRefresh}>Refresh</button>
-      {currencies ? (
-        <CurrencyList currencies={currencies} />
+      {currency ? (
+        <>
+        <h2>{currency.base}</h2>
+          <CurrencyList rates={currency.rates} />
+        </>
       ) : (
         <p>No data</p>
       )}

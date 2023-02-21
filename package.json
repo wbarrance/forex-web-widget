@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/NinaKWelch/forex-web-widget#readme",
   "dependencies": {
+    "@apollo/datasource-rest": "^5.0.2",
     "@apollo/server": "^4.4.0",
+    "dotenv": "^16.0.3",
     "graphql": "^16.6.0"
   },
   "devDependencies": {
