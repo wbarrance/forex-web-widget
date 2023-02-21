@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Current exchanges rates",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "start": "npm run compile && node ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,13 @@
   "bugs": {
     "url": "https://github.com/NinaKWelch/forex-web-widget/issues"
   },
-  "homepage": "https://github.com/NinaKWelch/forex-web-widget#readme"
+  "homepage": "https://github.com/NinaKWelch/forex-web-widget#readme",
+  "dependencies": {
+    "@apollo/server": "^4.4.0",
+    "graphql": "^16.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.0",
+    "typescript": "^4.9.5"
+  }
 }
