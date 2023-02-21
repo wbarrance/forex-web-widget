@@ -1,4 +1,4 @@
-import { Rates } from './types'
+import { Rates } from './types';
 
 interface CurrencyListProps {
   rates: Rates

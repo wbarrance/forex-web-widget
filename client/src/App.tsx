@@ -1,11 +1,11 @@
-import Currencies from './Currencies'
+import CurrencyWidget from './CurrencyWidget';
 
 const App = () => {
   return (
     <div >
       <header>
         <h1>Forex Widget</h1>
-        <Currencies />
+        <CurrencyWidget />
       </header>
     </div>
   );
