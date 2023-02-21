@@ -7,11 +7,20 @@ const currencies = [
         timestamp: 1676964831,
         base: "USD",
         date: "2023-02-21",
-        rates: {
-            GBP: 0.83091,
-            JPY: 134.173,
-            EUR: 0.93577,
-        }
+        rates: [
+            {
+                currency: "GBP",
+                value: 0.83091
+            },
+            {
+                currency: "JPY",
+                value: 134.173
+            },
+            {
+                currency: "EUR",
+                value: 0.93577
+            }
+        ]
     },
     {
         id: "2",
@@ -19,11 +28,20 @@ const currencies = [
         timestamp: 1676964831,
         base: "GBP",
         date: "2023-02-21",
-        rates: {
-            USD: 1.20327,
-            JPY: 161.457,
-            EUR: 1.12605,
-        }
+        rates: [
+            {
+                currency: "USD",
+                value: 1.20327
+            },
+            {
+                currency: "JPY",
+                value: 161.457
+            },
+            {
+                currency: "EUR",
+                value: 1.12605
+            }
+        ]
     },
     {
         id: "3",
@@ -31,11 +49,20 @@ const currencies = [
         timestamp: 1676964831,
         base: "EUR",
         date: "2023-02-21",
-        rates: {
-            USD: 1.06848,
-            JPY: 143.371,
-            GBP: 0.88787,
-        }
+        rates: [
+            {
+                currency: "USD",
+                value: 1.06848
+            },
+            {
+                currency: "JPY",
+                value: 143.371
+            },
+            {
+                currency: "GBP",
+                value: 0.88787
+            }
+        ]
     },
     {
         id: "4",
@@ -43,27 +70,35 @@ const currencies = [
         timestamp: 1676964831,
         base: "JPY",
         date: "2023-02-21",
-        rates: {
-            USD: 0.00745,
-            GBP: 0.00619,
-            EUR: 0.00697,
-        }
+        rates: [
+            {
+                currency: "USD",
+                value: 0.00745
+            },
+            {
+                currency: "GBP",
+                value: 0.00619
+            },
+            {
+                currency: "EUR",
+                value: 0.00697
+            }
+        ]
     },
 ];
 const typeDefs = `#graphql
-  type Rates {
-    GBP: Int
-    JPY: Int
-    EUR: Int
+  type Rate {
+    currency: String!
+    value: Float!
   }
 
   type Currency {
     id: ID!
-    success: Boolean
-    timestamp: Int
-    base: String
-    date: String
-    rates: Rates
+    success: Boolean!
+    timestamp: Int!
+    base: String!
+    date: String!
+    rates: [Rate!]!
   }
 
   type Query {
