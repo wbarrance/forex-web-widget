@@ -1,11 +1,11 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import * as dotenv from 'dotenv'
+import * as dotenv from 'dotenv';
 import { RESTDataSource, AugmentedRequest } from '@apollo/datasource-rest';
 import type { KeyValueCache } from '@apollo/utils.keyvaluecache';
-import { Currency } from './types'
+import { Currency } from './types';
 
-dotenv.config()
+dotenv.config();
 
 class ExchangeRatesAPI extends RESTDataSource {
   override baseURL = 'https://api.apilayer.com/exchangerates_data/';
@@ -52,7 +52,7 @@ const typeDefs = `#graphql
   }
 
   type Query {
-    getExchangeRates: Currency
+    getExchangeRates(base: String!, symbols: String!): Currency
   }
 `;
 
@@ -65,7 +65,7 @@ interface ContextValue {
 const resolvers = {
   Query: {
     getExchangeRates: async (_source: any, _args: any, { dataSources }) => {
-      return dataSources.ExchangeRatesAPI.getLatestCurrencyRates('USD', 'GBP,EUR,JPY,CHF,CAD,AUD,CNY,ZAR,RUB,BRL,HKD,MXN');
+      return dataSources.ExchangeRatesAPI.getLatestCurrencyRates(_args.base, _args.symbols);
     },
   },
 };

@@ -20,4 +20,3 @@ export type Currency = {
   date: string
   rates: Rates
 }
-

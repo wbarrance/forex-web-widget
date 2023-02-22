@@ -1,15 +1,17 @@
-import CurrencyWidget from './CurrencyWidget';
+import { Container, Row, Col } from 'react-bootstrap'
+import CurrencyWidget from './CurrencyWidget'
 
 const App = () => {
   return (
-    <div >
-      <header>
-        <h1>Forex Widget</h1>
+    <Container fluid>
+      <Row>
+        <Col as="header" xs="12" className="my-4 text-center">
+          <h1>Forex Widget</h1>
+        </Col>
         <CurrencyWidget />
-      </header>
-    </div>
-  );
+      </Row>
+    </Container>
+  )
 }
 
-export default App;
-
+export default App

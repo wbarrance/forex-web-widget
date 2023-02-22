@@ -42,13 +42,13 @@ const typeDefs = `#graphql
   }
 
   type Query {
-    getExchangeRates: Currency
+    getExchangeRates(base: String!, symbols: String!): Currency
   }
 `;
 const resolvers = {
     Query: {
         getExchangeRates: async (_source, _args, { dataSources }) => {
-            return dataSources.ExchangeRatesAPI.getLatestCurrencyRates('USD', 'GBP,EUR,JPY,CHF,CAD,AUD,CNY,ZAR,RUB,BRL,HKD,MXN');
+            return dataSources.ExchangeRatesAPI.getLatestCurrencyRates(_args.base, _args.symbols);
         },
     },
 };
